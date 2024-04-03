@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ACC7FD"
+    tools:context=".PlayScreen">
+
+
+    <TableLayout
+        android:id="@+id/playBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#555F82"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center">
+
+
+        <TableRow
+            android:id="@+id/row0"
+            android:layout_width="match_parent">
+
+
+            <Button
+                android:id="@+id/tile1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty"/>
+
+            <Button
+                android:id="@+id/tile2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty"/>
+
+
+            <Button
+                android:id="@+id/tile3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty"/>
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/tile4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty" />
+
+            <Button
+                android:id="@+id/tile5"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="changeSymbol"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty" />
+
+            <Button
+                android:id="@+id/tile6"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/tile7"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty" />
+            <Button
+                android:id="@+id/tile8"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty" />
+            <Button
+                android:id="@+id/tile9"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:backgroundTint="#555F82"
+                android:text="Empty" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/winnerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nobody Is The Winner"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/turnTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="It is X's Turn"
+        android:textSize="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/playHomeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#555F82"
+        android:onClick="toHomePage"
+        android:text="Main Screen"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

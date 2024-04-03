@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ACC7FD"
+    tools:context=".Instructions">
+
+    <TextView
+        android:id="@+id/InstructionsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#6D67BD"
+        android:textAlignment="center"
+        android:layout_marginTop="150px"
+        android:textSize="50dp"
+        android:text="Instructions" />
+
+    <TextView
+        android:id="@+id/InstructionsText"
+        android:layout_width="275dp"
+        android:layout_height="430dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60px"
+        android:background="#555F82"
+        android:text="Rico - Tac - Dale is a 2-player game in which both players compete to earn a three in a row using the shapes provided. At any given player's turn, they are allowed to put their shape down on one of the few squares on the grid. This ends their turn. Play continues from player to player until one gets three in a row either diagonally, horizontally, or vertically."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="23dp" />
+
+    <Button
+        android:id="@+id/BackButton"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20px"
+        android:layout_gravity="center"
+        android:backgroundTint="#555F82"
+        android:text="Back"
+        android:textSize="30dp"
+        android:onClick="toHomePage" />
+</LinearLayout>
