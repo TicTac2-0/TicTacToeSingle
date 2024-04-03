@@ -23,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
         instructionsButton = (Button) findViewById(R.id.InstructionsButton);
         playButton = (Button) findViewById(R.id.PlayButton);
         titleText = (TextView) findViewById(R.id.title_text);
-        Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "fonts/Monday Donuts.ttf");
-        titleText.setTypeface(myCustomFont);
-        playButton.setTypeface(myCustomFont);
-        instructionsButton.setTypeface(myCustomFont);
     }
 
     public void toInstructions(View v)
