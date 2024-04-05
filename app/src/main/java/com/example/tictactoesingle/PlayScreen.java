@@ -3,6 +3,7 @@ package com.example.tictactoesingle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
+
+    /* Robot move planning
+
+    Still use "turn" variable
+    Whenever it is O's turn, robot will move
+    Look for an empty space to replace with O
+    once it is placed, change turn back to X
+    Check for win once robot moves
+
+    Do all of that ^^^ on every click?
+
+     */
 
 
     String turn = "X";
@@ -67,6 +80,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
 
     //what happens when you win
+    @SuppressLint("SetTextI18n")
     public void win()
     {
         kaboom();
@@ -74,6 +88,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         winnerTV.setText(turn + " Is The Winner");
     }
 
+    @SuppressLint("SetTextI18n")
     public void kaboom()
     {
         tile1.setText("Kaboom");
@@ -172,6 +187,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     //Like a toString
     public void onClick(View v)
