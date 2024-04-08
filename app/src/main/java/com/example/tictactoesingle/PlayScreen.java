@@ -205,6 +205,10 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             if(turn.equals( "X"))
             {
                 turn = "O";
+                //do all brain stuff here
+                //need a way to change different views b/c this one goes off the current view
+                //directly change the information of the "tile" views
+                //fillLayout shouldn't be affected by this implementation
             }
             else
                 turn = "X";
