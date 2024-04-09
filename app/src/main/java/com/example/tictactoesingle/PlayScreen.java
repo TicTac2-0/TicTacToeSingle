@@ -198,10 +198,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             changeSymbol(v);
 
             fillArray();
-            diag1();
-            diag2();
-            checkVert();
-            checkHoriz();
+            checkAllWins();
+
             if(turn.equals( "X"))
             {
                 turn = "O";
@@ -209,6 +207,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 //need a way to change different views b/c this one goes off the current view
                 //directly change the information of the "tile" views
                 //fillLayout shouldn't be affected by this implementation
+
+
             }
             else
                 turn = "X";
@@ -216,6 +216,14 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         }
     }
     //end main function of the buttons
+
+    public void checkAllWins()
+    {
+        diag1();
+        diag2();
+        checkVert();
+        checkHoriz();
+    }
 
     public void toHomePage(View v)
     {
