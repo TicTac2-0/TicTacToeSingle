@@ -45,6 +45,9 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 4   5   6
                 7   8   9
          */
+
+        //make an array of buttons to have robot choose from
+        //essentially link the tile and button list
         tile1 = findViewById(R.id.tile1);
         tile2 = findViewById(R.id.tile2);
         tile3 = findViewById(R.id.tile3);
@@ -204,7 +207,6 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             {
                 turn = "O";
                 //do all brain stuff here
-                //need a way to change different views b/c this one goes off the current view
                 //directly change the information of the "tile" views
                 //fillLayout shouldn't be affected by this implementation
 
