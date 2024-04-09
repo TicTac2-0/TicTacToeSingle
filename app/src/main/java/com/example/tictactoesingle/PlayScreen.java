@@ -75,7 +75,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     public void kaboom()
-    {
+    { 
         tile1.setText("Kaboom");
         tile2.setText("Kaboom");
         tile3.setText("Kaboom");
