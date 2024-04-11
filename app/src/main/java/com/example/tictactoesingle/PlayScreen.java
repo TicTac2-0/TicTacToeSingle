@@ -3,6 +3,7 @@ package com.example.tictactoesingle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,18 @@ import android.widget.Toast;
 
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
 
+    /* Robot move planning
+
+    Still use "turn" variable
+    Whenever it is O's turn, robot will move
+    Look for an empty space to replace with O
+    once it is placed, change turn back to X
+    Check for win once robot moves
+
+    Do all of that ^^^ on every click?
+
+     */
+
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
@@ -19,6 +32,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
     TextView winnerTV, turnTV;
     String[] t = new String[10];
+
+    Button[] buttons = new Button[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +47,9 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 4   5   6
                 7   8   9
          */
+
+
+
         tile1 = findViewById(R.id.tile1);
         tile2 = findViewById(R.id.tile2);
         tile3 = findViewById(R.id.tile3);
@@ -53,6 +71,18 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         tile8.setOnClickListener(this);
         tile9.setOnClickListener(this);
 
+        //make an array of buttons to have robot choose from
+        //essentially link the tile and button list
+        buttons[0] = tile1;
+        buttons[1] = tile2;
+        buttons[2] = tile3;
+        buttons[3] = tile4;
+        buttons[4] = tile5;
+        buttons[5] = tile6;
+        buttons[6] = tile7;
+        buttons[7] = tile8;
+        buttons[8] = tile9;
+
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
 
@@ -67,6 +97,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
 
     //what happens when you win
+    @SuppressLint("SetTextI18n")
     public void win()
     {
         kaboom();
@@ -74,6 +105,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         winnerTV.setText(turn + " Is The Winner");
     }
 
+    @SuppressLint("SetTextI18n")
     public void kaboom()
     { 
         tile1.setText("Kaboom");
@@ -172,6 +204,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     //Like a toString
     public void onClick(View v)
@@ -182,13 +215,27 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             changeSymbol(v);
 
             fillArray();
-            diag1();
-            diag2();
-            checkVert();
-            checkHoriz();
+            checkAllWins();
+
             if(turn.equals( "X"))
             {
                 turn = "O";
+                //do all brain stuff here
+                //directly change the information of the "tile" views
+                //fillLayout shouldn't be affected by this implementation
+
+                for(int i = 0; i < 9; i++)
+                {
+                    if(buttons[i].getText().equals("Empty"))
+                    {
+                        buttons[i].setText(turn);
+                        fillArray();
+                        checkAllWins();
+                        i = 10;
+                        turn = "X";
+                    }
+                }
+
             }
             else
                 turn = "X";
@@ -196,6 +243,14 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         }
     }
     //end main function of the buttons
+
+    public void checkAllWins()
+    {
+        diag1();
+        diag2();
+        checkVert();
+        checkHoriz();
+    }
 
     public void toHomePage(View v)
     {
