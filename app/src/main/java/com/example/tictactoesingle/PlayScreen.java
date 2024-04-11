@@ -33,6 +33,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     TextView winnerTV, turnTV;
     String[] t = new String[10];
 
+    Button[] buttons = new Button[9];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,6 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
         //make an array of buttons to have robot choose from
         //essentially link the tile and button list
-        Button[] buttons = new Button[9];
         buttons[0] = tile1;
         buttons[1] = tile2;
         buttons[2] = tile3;
@@ -223,6 +224,17 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 //directly change the information of the "tile" views
                 //fillLayout shouldn't be affected by this implementation
 
+                for(int i = 0; i < 9; i++)
+                {
+                    if(buttons[i].getText().equals("Empty"))
+                    {
+                        buttons[i].setText(turn);
+                        fillArray();
+                        checkAllWins();
+                        i = 10;
+                        turn = "X";
+                    }
+                }
 
             }
             else
