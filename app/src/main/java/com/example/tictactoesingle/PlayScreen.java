@@ -46,8 +46,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 7   8   9
          */
 
-        //make an array of buttons to have robot choose from
-        //essentially link the tile and button list
+
+
         tile1 = findViewById(R.id.tile1);
         tile2 = findViewById(R.id.tile2);
         tile3 = findViewById(R.id.tile3);
@@ -68,6 +68,19 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         tile7.setOnClickListener(this);
         tile8.setOnClickListener(this);
         tile9.setOnClickListener(this);
+
+        //make an array of buttons to have robot choose from
+        //essentially link the tile and button list
+        Button[] buttons = new Button[9];
+        buttons[0] = tile1;
+        buttons[1] = tile2;
+        buttons[2] = tile3;
+        buttons[3] = tile4;
+        buttons[4] = tile5;
+        buttons[5] = tile6;
+        buttons[6] = tile7;
+        buttons[7] = tile8;
+        buttons[8] = tile9;
 
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
