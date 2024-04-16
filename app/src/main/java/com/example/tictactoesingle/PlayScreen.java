@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -224,17 +225,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 //directly change the information of the "tile" views
                 //fillLayout shouldn't be affected by this implementation
 
-                for(int i = 0; i < 9; i++)
-                {
-                    if(buttons[i].getText().equals("Empty"))
-                    {
-                        buttons[i].setText(turn);
-                        fillArray();
-                        checkAllWins();
-                        i = 10;
-                        turn = "X";
-                    }
-                }
+                robotMove();
 
             }
             else
@@ -243,6 +234,21 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         }
     }
     //end main function of the buttons
+
+    public void robotMove()
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            if(buttons[i].getText().equals("Empty"))
+            {
+                buttons[i].setText(turn);
+                fillArray();
+                checkAllWins();
+                i = 10;
+                turn = "X";
+            }
+        }
+    }
 
     public void checkAllWins()
     {
