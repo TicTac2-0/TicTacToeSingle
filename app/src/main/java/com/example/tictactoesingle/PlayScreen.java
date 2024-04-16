@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
@@ -225,11 +226,21 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 //directly change the information of the "tile" views
                 //fillLayout shouldn't be affected by this implementation
 
-                robotMove();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Do something after 2s
+                        robotMove();
+                        turnTV.setText("It is " + turn + "'s Turn");
+                    }
+                }, 1000);
+
 
             }
             else
                 turn = "X";
+
             turnTV.setText("It is " + turn + "'s Turn");
         }
     }
