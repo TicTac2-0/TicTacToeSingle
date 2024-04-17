@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
 
     /* Robot move planning
@@ -25,12 +27,16 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     Do all of that ^^^ on every click?
 
+        Rest of logic
+            Place anywhere where the symbols to the sides are the same
+            Place anywhere there are two symbols matching
+                Select random spot otherwise
+
      */
 
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
-
     Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
     TextView winnerTV, turnTV;
     String[] t = new String[10];
@@ -246,19 +252,32 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     }
     //end main function of the buttons
 
+
+    /* Robot Win Planning
+        First move logic
+            Go for center tile if empty
+                Go for any corner if not
+
+        Rest of logic
+            Place anywhere where the symbols to the sides are the same
+            Place anywhere there are two symbols matching
+                Select random spot otherwise
+
+     */
+
     public void robotMove()
     {
-        for(int i = 0; i < 9; i++)
+        Random rand = new Random();
+        int select = rand.nextInt(7);
+        while(buttons[select].getText() != "Empty")
         {
-            if(buttons[i].getText().equals("Empty"))
-            {
-                buttons[i].setText(turn);
-                fillArray();
-                checkAllWins();
-                i = 10;
-                turn = "X";
-            }
+            select = rand.nextInt(7);
         }
+
+        buttons[select].setText(turn);
+        fillArray();
+        checkAllWins();
+        turn = "X";
     }
 
     public void checkAllWins()
