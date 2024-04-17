@@ -102,9 +102,10 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     @SuppressLint("SetTextI18n")
     public void win()
     {
-        kaboom();
         Toast.makeText(this, turn + " won", Toast.LENGTH_LONG).show();
         winnerTV.setText(turn + " Is The Winner");
+        turnTV.setText("");
+        kaboom();
     }
 
     @SuppressLint("SetTextI18n")
