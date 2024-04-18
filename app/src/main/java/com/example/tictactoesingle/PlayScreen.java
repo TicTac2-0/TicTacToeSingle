@@ -267,10 +267,11 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     public void robotMove()
     {
-        Random rand = new Random();
-        int select = rand.nextInt(7);
-        while(buttons[select].getText() != "Empty")
+        int select = 4; // choose middle if not taken
+
+        while (!buttons[select].getText().equals("Empty"))
         {
+            Random rand = new Random();
             select = rand.nextInt(7);
         }
 
