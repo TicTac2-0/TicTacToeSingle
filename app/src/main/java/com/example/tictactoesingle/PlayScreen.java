@@ -265,6 +265,14 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
      */
 
+    //make an array of even numbers to randomly choose an edge
+    //only 4 even numbers from 1-8
+    //same thing for odd numbers
+    //only 5 odd numbers from 1-9
+    int[] even = {2,4,6,8};
+    int[] odd = {1,3,5,7,9};
+
+    //If all corners are taken, go for a random edge.
     public void robotMove()
     {
         int select = 4; // choose middle if not taken
