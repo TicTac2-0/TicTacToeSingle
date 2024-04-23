@@ -41,7 +41,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     TextView winnerTV, turnTV;
     String[] t = new String[10];
 
-    Button[] buttons = new Button[9];
+    Button[] buttons = new Button[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,15 +81,16 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
         //make an array of buttons to have robot choose from
         //essentially link the tile and button list
-        buttons[0] = tile1;
-        buttons[1] = tile2;
-        buttons[2] = tile3;
-        buttons[3] = tile4;
-        buttons[4] = tile5;
-        buttons[5] = tile6;
-        buttons[6] = tile7;
-        buttons[7] = tile8;
-        buttons[8] = tile9;
+        buttons[0] = null;
+        buttons[1] = tile1;
+        buttons[2] = tile2;
+        buttons[3] = tile3;
+        buttons[4] = tile4;
+        buttons[5] = tile5;
+        buttons[6] = tile6;
+        buttons[7] = tile7;
+        buttons[8] = tile8;
+        buttons[9] = tile9;
 
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
@@ -236,7 +237,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //Do something after 2s
+                        //Do something after 1s
                         robotMove();
                         turnTV.setText("It is " + turn + "'s Turn");
                     }
@@ -269,18 +270,42 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     //only 4 even numbers from 1-8
     //same thing for odd numbers
     //only 5 odd numbers from 1-9
-    int[] even = {2,4,6,8};
-    int[] odd = {1,3,5,7,9};
+    int[] edges = {2,4,6,8};
+    int[] corners = {1,3,7,9};
 
     //If all corners are taken, go for a random edge.
     public void robotMove()
     {
-        int select = 4; // choose middle if not taken
+        int select = 5; // choose middle if not taken
 
-        while (!buttons[select].getText().equals("Empty"))
+        if (!t[select].equals("Empty"))
         {
-            Random rand = new Random();
-            select = rand.nextInt(7);
+            //checks if any of the corners are empty
+            if(t[1].equals("Empty") || t[3].equals("Empty") || t[7].equals("Empty") || t[9].equals("Empty") )
+            {
+                while(!t[select].equals("Empty"));
+                {
+                    Random rand = new Random();
+                    select = corners[rand.nextInt(3)];
+                }
+            }
+            else if(t[2].equals("Empty") || t[4].equals("Empty") ||  t[6].equals("Empty") ||  t[8].equals("Empty") )
+            {
+                //checks if any of the edges are empty
+                while(!buttons[select].getText().equals("Empty"))
+                {
+                    Random rand = new Random();
+                    select = edges[rand.nextInt(4)];
+                }
+            }
+            else
+            {
+                while(!buttons[select].getText().equals("Empty"))
+                {
+                    Random rand = new Random();
+                    select = rand.nextInt(8) + 1;
+                }
+            }
         }
 
         buttons[select].setText(turn);
