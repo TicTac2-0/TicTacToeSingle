@@ -125,10 +125,10 @@
         android:id="@+id/turnTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="It is X's Turn"
-        android:textSize="30dp"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:layout_gravity="center"/>
+        android:text="It is X's Turn"
+        android:textSize="30dp" />
 
     <Button
         android:id="@+id/playHomeBtn"
@@ -140,5 +140,7 @@
         android:text="Main Screen"
         android:textSize="30dp"
         android:layout_marginTop="20dp"/>
+
+
 
 </LinearLayout>
