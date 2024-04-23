@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Random;
 
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +28,9 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
      */
 
+
+    Random rand = new Random();
+    int randomTurn = rand.nextInt(2);
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
@@ -88,6 +92,18 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
 
+        if (randomTurn == 0)
+        {
+            turn = "X";
+        }
+
+        if (randomTurn == 1)
+        {
+            turn = "O";
+        }
+
+        turnTV.setText("It is " + turn + "'s Turn");
+
 
         /* Brainstorm of how to change image of tiles
             Need two different conditions, Dale's turn, and Rico's turn
@@ -110,7 +126,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     @SuppressLint("SetTextI18n")
     public void kaboom()
-    { 
+    {
         tile1.setText("Kaboom");
         tile2.setText("Kaboom");
         tile3.setText("Kaboom");
