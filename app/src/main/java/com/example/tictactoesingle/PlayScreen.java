@@ -226,7 +226,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             fillArray();
             checkAllWins();
 
-            if(turn.equals( "X") || !t[1].equals("Kaboom"))
+            if(turn.equals( "X") && !t[1].equals("Kaboom"))
             {
                 turn = "O";
                 //do all brain stuff here
@@ -297,7 +297,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 while(!t[select].equals("Empty"))
                 {
                     Random rand = new Random();
-                    select = corners[rand.nextInt(3)];
+                    select = edges[rand.nextInt(3)];
                     System.out.println(edges[rand.nextInt(3)]);
                 }
             }
