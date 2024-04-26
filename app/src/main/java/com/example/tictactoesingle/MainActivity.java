@@ -22,10 +22,13 @@ public class MainActivity extends AppCompatActivity {
         instructionsButton = (Button) findViewById(R.id.InstructionsButton);
         playButton = (Button) findViewById(R.id.PlayButton);
         titleText = (TextView) findViewById(R.id.title_text);
+
+        System.out.println("Created buttons and one text view main activity");
     }
 
     public void toInstructions(View v)
     {
+        System.out.println("entered toInstructions");
         startActivity(new Intent(MainActivity.this, Instructions.class));
     }
 
