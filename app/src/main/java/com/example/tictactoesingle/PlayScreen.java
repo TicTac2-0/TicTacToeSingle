@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
@@ -226,8 +227,9 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             fillArray();
             checkAllWins();
 
-            if(turn.equals( "X") && !t[1].equals("Kaboom"))
+            if(turn.equals( "X") && !Arrays.stream(t).anyMatch("Kaboom"::equals))
             {
+                fillArray();
                 turn = "O";
                 //do all brain stuff here
                 //directly change the information of the "tile" views
@@ -238,6 +240,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void run() {
                         //Do something after 1s
+                        System.out.println("Robot moving");
                         robotMove();
                         turnTV.setText("It is " + turn + "'s Turn");
                     }
@@ -245,6 +248,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
 
             }
+            else if (Arrays.stream(t).anyMatch("Kaboom"::equals))
+                turn = "What";
             else
                 turn = "X";
 
@@ -278,10 +283,10 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     {
         int select = 5; // choose middle if not taken
 
-        if (!t[select].equals("Empty"))
+        if (!t[select].equals("Empty") && !t[select].equals("Kaboom"))
         {
             //checks if any of the corners are empty
-            if(t[1].equals("Empty") || t[3].equals("Empty") || t[7].equals("Empty") || t[9].equals("Empty") )
+            if((t[1].equals("Empty") || t[3].equals("Empty") || t[7].equals("Empty") || t[9].equals("Empty")) && !Arrays.stream(t).anyMatch("Kaboom"::equals) )
             {
                 while(!t[select].equals("Empty"))
                 {
@@ -294,7 +299,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             //chooses edges if all corners are taken
             else
             {
-                while(!t[select].equals("Empty"))
+                while(!t[select].equals("Empty") && !Arrays.stream(t).anyMatch("Kaboom"::equals))
                 {
                     Random rand = new Random();
                     select = edges[rand.nextInt(3)];
@@ -303,9 +308,11 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
             }
         }
 
-        buttons[select].setText(turn);
-        fillArray();
-        checkAllWins();
+        if (Arrays.stream(t).anyMatch("Empty"::equals)) {
+            buttons[select].setText(turn);
+            fillArray();
+            checkAllWins();
+        }
         turn = "X";
     }
 
@@ -315,6 +322,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         diag2();
         checkVert();
         checkHoriz();
+
     }
 
     public void toHomePage(View v)
