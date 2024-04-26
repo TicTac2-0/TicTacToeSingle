@@ -43,6 +43,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     String[] t = new String[10];
 
     Button[] buttons = new Button[10];
+    int numTurns = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,6 +223,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         Button outBtn = findViewById(v.getId());
         if(outBtn.getText().equals("Empty"))
         {
+            numTurns++;
             changeSymbol(v);
 
             fillArray();
@@ -242,6 +244,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                         //Do something after 1s
                         System.out.println("Robot moving");
                         robotMove();
+                        numTurns++;
                         turnTV.setText("It is " + turn + "'s Turn");
                     }
                 }, 1000);
@@ -291,8 +294,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 while(!t[select].equals("Empty"))
                 {
                     Random rand = new Random();
-                    select = corners[rand.nextInt(3)];
-                    System.out.println(corners[rand.nextInt(3)]);
+                    select = corners[rand.nextInt(4)];
+                    System.out.println(corners[rand.nextInt(4)]);
                 }
             }
 
@@ -302,8 +305,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 while(!t[select].equals("Empty") && !Arrays.stream(t).anyMatch("Kaboom"::equals))
                 {
                     Random rand = new Random();
-                    select = edges[rand.nextInt(3)];
-                    System.out.println(edges[rand.nextInt(3)]);
+                    select = edges[rand.nextInt(4)];
+                    System.out.println(edges[rand.nextInt(4)]);
                 }
             }
         }
@@ -322,6 +325,12 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         diag2();
         checkVert();
         checkHoriz();
+
+        if(numTurns == 9 && !Arrays.stream(t).anyMatch("Kaboom"::equals))
+        {
+            turn = "Nobody";
+            win();
+        }
 
     }
 
