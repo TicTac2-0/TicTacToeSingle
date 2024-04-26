@@ -22,11 +22,9 @@ public class Instructions extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
 
+        System.out.println("Started Instructions activity");
         instructionsTitle = (TextView) findViewById(R.id.InstructionsTitle);
         instructionsText = (TextView) findViewById(R.id.InstructionsText);
-        Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "fonts/Monday Donuts.ttf");
-        instructionsTitle.setTypeface(myCustomFont);
-        instructionsText.setTypeface(myCustomFont);
     }
 
     public void toHomePage(View v)

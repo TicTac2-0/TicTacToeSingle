@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ACC7FD"
     android:orientation="vertical"
+    android:background="#ACC7FD"
     tools:context=".MainActivity">
 
     <TextView
@@ -34,11 +34,11 @@
         android:id="@+id/InstructionsButton"
         android:layout_width="370dp"
         android:layout_height="150dp"
-        android:layout_marginTop="150px"
         android:layout_gravity="center"
+        android:layout_marginTop="150px"
         android:backgroundTint="#555F82"
+        android:onClick="toInstructions"
         android:text="Instructions"
-        android:textSize="30dp"
-        android:onClick="toInstructions" />
+        android:textSize="30dp" />
 
 </LinearLayout>
