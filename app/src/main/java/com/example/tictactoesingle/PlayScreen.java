@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Random;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
 
     /* Robot move planning
@@ -26,6 +29,11 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     Do all of that ^^^ on every click?
 
+        Rest of logic
+            Place anywhere where the symbols to the sides are the same
+            Place anywhere there are two symbols matching
+                Select random spot otherwise
+
      */
 
 
@@ -34,12 +42,12 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
-
     Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
     TextView winnerTV, turnTV;
     String[] t = new String[10];
 
-    Button[] buttons = new Button[9];
+    Button[] buttons = new Button[10];
+    int numTurns = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +87,16 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
         //make an array of buttons to have robot choose from
         //essentially link the tile and button list
-        buttons[0] = tile1;
-        buttons[1] = tile2;
-        buttons[2] = tile3;
-        buttons[3] = tile4;
-        buttons[4] = tile5;
-        buttons[5] = tile6;
-        buttons[6] = tile7;
-        buttons[7] = tile8;
-        buttons[8] = tile9;
+        buttons[0] = null;
+        buttons[1] = tile1;
+        buttons[2] = tile2;
+        buttons[3] = tile3;
+        buttons[4] = tile4;
+        buttons[5] = tile5;
+        buttons[6] = tile6;
+        buttons[7] = tile7;
+        buttons[8] = tile8;
+        buttons[9] = tile9;
 
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
@@ -231,13 +240,15 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         Button outBtn = findViewById(v.getId());
         if(outBtn.getText().equals("Empty"))
         {
+            numTurns++;
             changeSymbol(v);
 
             fillArray();
             checkAllWins();
 
-            if(turn.equals( "X"))
+            if(turn.equals( "X") && !Arrays.stream(t).anyMatch("Kaboom"::equals))
             {
+                fillArray();
                 turn = "O";
                 //do all brain stuff here
                 //directly change the information of the "tile" views
@@ -247,14 +258,18 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //Do something after 2s
+                        //Do something after 1s
+                        System.out.println("Robot moving");
                         robotMove();
+                        numTurns++;
                         turnTV.setText("It is " + turn + "'s Turn");
                     }
                 }, 1000);
 
 
             }
+            else if (Arrays.stream(t).anyMatch("Kaboom"::equals))
+                turn = "What";
             else
                 turn = "X";
 
@@ -263,19 +278,62 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     }
     //end main function of the buttons
 
+
+    /* Robot Win Planning
+        First move logic
+            Go for center tile if empty
+                Go for any corner if not
+
+        Rest of logic
+            Place anywhere where the symbols to the sides are the same
+            Place anywhere there are two symbols matching
+                Select random spot otherwise
+
+     */
+
+    //make an array of even numbers to randomly choose an edge
+    //only 4 even numbers from 1-8
+    //same thing for odd numbers
+    //only 5 odd numbers from 1-9
+    int[] edges = {2,4,6,8};
+    int[] corners = {1,3,7,9};
+
+    //If all corners are taken, go for a random edge.
     public void robotMove()
     {
-        for(int i = 0; i < 9; i++)
+        int select = 5; // choose middle if not taken
+
+        if (!t[select].equals("Empty") && !t[select].equals("Kaboom"))
         {
-            if(buttons[i].getText().equals("Empty"))
+            //checks if any of the corners are empty
+            if((t[1].equals("Empty") || t[3].equals("Empty") || t[7].equals("Empty") || t[9].equals("Empty")) && !Arrays.stream(t).anyMatch("Kaboom"::equals) )
             {
-                buttons[i].setText(turn);
-                fillArray();
-                checkAllWins();
-                i = 10;
-                turn = "X";
+                while(!t[select].equals("Empty"))
+                {
+                    Random rand = new Random();
+                    select = corners[rand.nextInt(4)];
+                    System.out.println(corners[rand.nextInt(4)]);
+                }
+            }
+
+            //chooses edges if all corners are taken
+            else
+            {
+                while(!t[select].equals("Empty") && !Arrays.stream(t).anyMatch("Kaboom"::equals))
+                {
+                    Random rand = new Random();
+                    select = edges[rand.nextInt(4)];
+                    System.out.println(edges[rand.nextInt(4)]);
+                }
             }
         }
+
+        if (Arrays.stream(t).anyMatch("Empty"::equals)) {
+            buttons[select].setText(turn);
+            fillArray();
+            checkAllWins();
+        }
+        turn = "X";
     }
 
     public void checkAllWins()
@@ -284,6 +342,13 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         diag2();
         checkVert();
         checkHoriz();
+
+        if(numTurns == 9 && !Arrays.stream(t).anyMatch("Kaboom"::equals))
+        {
+            turn = "Nobody";
+            win();
+        }
+
     }
 
     public void toHomePage(View v)
