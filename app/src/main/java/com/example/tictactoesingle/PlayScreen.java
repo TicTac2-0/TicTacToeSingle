@@ -37,8 +37,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
      */
 
 
-    Random rand = new Random();
-    int randomTurn = rand.nextInt(2);
+    Random rando = new Random();
+    int randomTurn = rando.nextInt(2);
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
@@ -101,6 +101,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
 
+        String robot, human;
+        //Randomize turn
         if (randomTurn == 0)
         {
             turn = "X";
