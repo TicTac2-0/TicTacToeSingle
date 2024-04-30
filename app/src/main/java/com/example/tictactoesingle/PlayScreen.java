@@ -100,20 +100,33 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
-
-        String robot, human;
         //Randomize turn
-        if (randomTurn == 0)
+        if (randomTurn == 0) //human moves first
         {
             turn = "X";
         }
 
-        if (randomTurn == 1)
+        if (randomTurn == 1) //robot moves first
         {
+            fillArray();
             turn = "O";
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 1s
+                    System.out.println("Robot moving");
+                    robotMove();
+                    numTurns++;
+                    turnTV.setText("It is " + turn + "'s Turn");
+                }
+            }, 1000);
         }
 
         turnTV.setText("It is " + turn + "'s Turn");
+
+
 
 
         /* Brainstorm of how to change image of tiles
@@ -304,8 +317,14 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
     public void robotMove()
     {
         int select = 5; // choose middle if not taken
+        if(t[5].equals("Empty"))
+        {
+            buttons[select].setText(turn);
+            fillArray();
+            checkAllWins();
+        }
 
-        if (!t[select].equals("Empty") && !t[select].equals("Kaboom"))
+        else if (!t[select].equals("Empty") && !t[select].equals("Kaboom"))
         {
             //checks if any of the corners are empty
             if((t[1].equals("Empty") || t[3].equals("Empty") || t[7].equals("Empty") || t[9].equals("Empty")) && !Arrays.stream(t).anyMatch("Kaboom"::equals) )
