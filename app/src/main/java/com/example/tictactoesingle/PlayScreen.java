@@ -121,7 +121,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                     numTurns++;
                     turnTV.setText("It is " + turn + "'s Turn");
                 }
-            }, 3000);
+            }, 2000);
         }
 
         turnTV.setText("It is " + turn + "'s Turn");
