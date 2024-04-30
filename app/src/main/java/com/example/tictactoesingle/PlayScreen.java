@@ -37,8 +37,6 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
      */
 
 
-    Random rando = new Random();
-    int randomTurn = rando.nextInt(2);
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
@@ -62,6 +60,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                 7   8   9
          */
 
+        Random rando = new Random();
+        int randomTurn = rando.nextInt(2);
 
 
         tile1 = findViewById(R.id.tile1);
@@ -121,7 +121,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
                     numTurns++;
                     turnTV.setText("It is " + turn + "'s Turn");
                 }
-            }, 1000);
+            }, 3000);
         }
 
         turnTV.setText("It is " + turn + "'s Turn");
