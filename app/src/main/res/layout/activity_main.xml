@@ -20,14 +20,25 @@
         android:textStyle="italic" />
 
     <Button
-        android:id="@+id/PlayButton"
+        android:id="@+id/SinglePlayerButton"
         android:layout_width="370dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="150px"
         android:backgroundTint="#555F82"
         android:onClick="toPlay"
-        android:text="Play"
+        android:text="Single Player"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/MultiplayerButton"
+        android:layout_width="370dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20px"
+        android:backgroundTint="#555F82"
+        android:onClick="toMultiplayer"
+        android:text="Multiplayer"
         android:textSize="30dp" />
 
     <Button
@@ -35,7 +46,7 @@
         android:layout_width="370dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="20px"
         android:backgroundTint="#555F82"
         android:onClick="toInstructions"
         android:text="Instructions"
