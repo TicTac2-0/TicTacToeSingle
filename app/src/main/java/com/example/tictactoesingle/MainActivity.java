@@ -3,7 +3,6 @@ package com.example.tictactoesingle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         instructionsButton = (Button) findViewById(R.id.InstructionsButton);
-        playButton = (Button) findViewById(R.id.PlayButton);
+        playButton = (Button) findViewById(R.id.SinglePlayerButton);
         titleText = (TextView) findViewById(R.id.title_text);
-
-        System.out.println("Created buttons and one text view main activity");
     }
 
     public void toInstructions(View v)
@@ -36,5 +33,10 @@ public class MainActivity extends AppCompatActivity {
     public void toPlay(View v)
     {
         startActivity(new Intent(MainActivity.this, PlayScreen.class));
+    }
+
+    public void toMultiplayer(View v)
+    {
+        startActivity(new Intent(MainActivity.this, MultiplayerScreen.class));
     }
 }
