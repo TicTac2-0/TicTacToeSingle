@@ -130,6 +130,16 @@
         android:layout_marginTop="40dp"
         android:layout_gravity="center"/>
 
+    <TextView
+        android:id="@+id/tieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="It's a tie!"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/playHomeBtn"
         android:layout_width="wrap_content"
