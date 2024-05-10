@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void toInstructions(View v)
     {
-        System.out.println("entered toInstructions");
         startActivity(new Intent(MainActivity.this, Instructions.class));
     }
 
@@ -35,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, PlayScreen.class));
     }
 
-    public void toMultiplayer(View v)
+    public void startMultiplayer(View view)
     {
-        startActivity(new Intent(MainActivity.this, MultiplayerScreen.class));
+        Intent intent = new Intent(this,MultiplayerScreen.class);
+        startActivity(intent);
     }
 }

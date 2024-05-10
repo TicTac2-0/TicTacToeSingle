@@ -2,8 +2,6 @@ package com.example.tictactoesingle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -65,12 +63,19 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
             diag2();
             checkVert();
             checkHoriz();
-            if (currentPlayer.equals("X")) {
-                currentPlayer = "O";
+            if (checkForWin()) {
+                // Player won
+                Toast.makeText(this, currentPlayer + " won", Toast.LENGTH_LONG).show();
+                // Perform any necessary end-of-game actions
+            } else if (checkForDraw()) {
+                // Draw
+                Toast.makeText(this, "It's a draw", Toast.LENGTH_LONG).show();
+                // Perform any necessary end-of-game actions
             } else {
-                currentPlayer = "X";
+                // Switch player
+                currentPlayer = (currentPlayer.equals("X")) ? "O" : "X";
+                turnTV.setText("It is " + currentPlayer + "'s Turn");
             }
-            turnTV.setText("It is " + currentPlayer + "'s Turn");
         }
     }
 
@@ -95,6 +100,44 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
     }
 
 
+    private boolean checkLine(CharSequence a, CharSequence b, CharSequence c) {
+        return !a.equals("Empty") && a.equals(b) && b.equals(c);
+    }
+
+
+    private boolean checkForWin() {
+        // Check horizontal lines
+        if (checkLine(tile1.getText(), tile2.getText(), tile3.getText())
+                || checkLine(tile4.getText(), tile5.getText(), tile6.getText())
+                || checkLine(tile7.getText(), tile8.getText(), tile9.getText())) {
+            return true;
+        }
+        // Check vertical lines
+        if (checkLine(tile1.getText(), tile4.getText(), tile7.getText())
+                || checkLine(tile2.getText(), tile5.getText(), tile8.getText())
+                || checkLine(tile3.getText(), tile6.getText(), tile9.getText())) {
+            return true;
+        }
+        // Check diagonal lines
+        if (checkLine(tile1.getText(), tile5.getText(), tile9.getText())
+                || checkLine(tile3.getText(), tile5.getText(), tile7.getText())) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean checkForDraw() {
+        return !tile1.getText().equals("Empty") && !tile2.getText().equals("Empty") && !tile3.getText().equals("Empty") &&
+                !tile4.getText().equals("Empty") && !tile5.getText().equals("Empty") && !tile6.getText().equals("Empty") &&
+                !tile7.getText().equals("Empty") && !tile8.getText().equals("Empty") && !tile9.getText().equals("Empty");
+    }
+
+
+    public void toHomePage(View v) {
+        startActivity(new Intent(MultiplayerScreen.this, MainActivity.class));
+    }
+
     public void diag1() {
         if(!t[1].equals("Empty") && !t[5].equals("Empty") && !t[9].equals("Empty") && !t[1].equals("Kaboom")) {
             if(t[1].equals(t[5]) && t[5].equals(t[9])) {
@@ -104,7 +147,6 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     public void diag2() {
         if(!t[7].equals("Empty") && !t[5].equals("Empty") && !t[3].equals("Empty") && !t[1].equals("Kaboom")) {
             if(t[7].equals(t[5]) && t[5].equals(t[3])) {
@@ -113,7 +155,6 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
             }
         }
     }
-
 
     public void checkVert() {
         for(int i = 1; i < 3; i++) {
@@ -126,7 +167,6 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     public void checkHoriz() {
         for(int i = 1; i < 8; i += 3) {
             if (!t[i].equals("Empty") && !t[i + 1].equals("Empty") && !t[i + 2].equals("Empty") && !t[1].equals("Kaboom")) {
@@ -138,13 +178,11 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     public void win() {
         kaboom();
         Toast.makeText(this, currentPlayer + " won", Toast.LENGTH_LONG).show();
         winnerTV.setText(currentPlayer + " Is The Winner");
     }
-
 
     public void kaboom() {
         tile1.setText("Kaboom");
@@ -156,10 +194,5 @@ public class MultiplayerScreen extends AppCompatActivity implements View.OnClick
         tile7.setText("Kaboom");
         tile8.setText("Kaboom");
         tile9.setText("Kaboom");
-    }
-
-
-    public void toHomePage(View v) {
-        startActivity(new Intent(MultiplayerScreen.this, MainActivity.class));
     }
 }

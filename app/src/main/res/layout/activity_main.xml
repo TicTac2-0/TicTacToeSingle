@@ -37,7 +37,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20px"
         android:backgroundTint="#555F82"
-        android:onClick="toMultiplayer"
+        android:onClick="startMultiplayer"
         android:text="Multiplayer"
         android:textSize="30dp" />
 
