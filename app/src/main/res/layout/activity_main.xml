@@ -26,7 +26,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="150px"
         android:backgroundTint="#555F82"
-        android:onClick="toPlay"
+        android:onClick=""
         android:text="Single Player"
         android:textSize="30dp" />
 
@@ -37,7 +37,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20px"
         android:backgroundTint="#555F82"
-        android:onClick="startMultiplayer"
+        android:onClick="toPlay"
         android:text="Multiplayer"
         android:textSize="30dp" />
 

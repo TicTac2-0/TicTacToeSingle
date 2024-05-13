@@ -34,9 +34,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, PlayScreen.class));
     }
 
-    public void startMultiplayer(View view)
-    {
-        Intent intent = new Intent(this,MultiplayerScreen.class);
-        startActivity(intent);
-    }
 }

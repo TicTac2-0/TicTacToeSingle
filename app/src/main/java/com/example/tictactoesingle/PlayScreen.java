@@ -12,12 +12,11 @@ import android.widget.Toast;
 
 public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
 
-
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
 
     Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
-    TextView winnerTV, turnTV;
+    TextView winnerTV, turnTV, tieText;
     String[] t = new String[10];
 
     @Override
@@ -55,15 +54,9 @@ public class PlayScreen extends AppCompatActivity implements View.OnClickListene
 
         winnerTV = findViewById(R.id.winnerTV);
         turnTV = findViewById(R.id.turnTV);
+        tieText = findViewById(R.id.tieText);
 
-
-        /* Brainstorm of how to change image of tiles
-            Need two different conditions, Dale's turn, and Rico's turn
-                have variable called turn?
-            Need to check src/image of the tile being pressed
-                If its the "empty" image then change
-         */
-    }
+        }
 
 
     //what happens when you win
