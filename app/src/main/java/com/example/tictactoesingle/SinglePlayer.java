@@ -24,15 +24,15 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_single_player);
 
 
-        tile1 = findViewById(R.id.tile1);
-        tile2 = findViewById(R.id.tile2);
-        tile3 = findViewById(R.id.tile3);
-        tile4 = findViewById(R.id.tile4);
-        tile5 = findViewById(R.id.tile5);
-        tile6 = findViewById(R.id.tile6);
-        tile7 = findViewById(R.id.tile7);
-        tile8 = findViewById(R.id.tile8);
-        tile9 = findViewById(R.id.tile9);
+        tile1 = findViewById(R.id.tile12);
+        tile2 = findViewById(R.id.tile22);
+        tile3 = findViewById(R.id.tile32);
+        tile4 = findViewById(R.id.tile42);
+        tile5 = findViewById(R.id.tile52);
+        tile6 = findViewById(R.id.tile62);
+        tile7 = findViewById(R.id.tile72);
+        tile8 = findViewById(R.id.tile82);
+        tile9 = findViewById(R.id.tile92);
 
 
         tile1.setOnClickListener(this);
@@ -46,8 +46,8 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         tile9.setOnClickListener(this);
 
 
-        winnerTV = findViewById(R.id.winnerTV);
-        turnTV = findViewById(R.id.turnTV);
+        winnerTV = findViewById(R.id.winnerTV2);
+        turnTV = findViewById(R.id.turnTV2);
 
 
         initializeGameState();
@@ -155,10 +155,7 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         if (t[1].equals(player) && t[5].equals(player) && t[9].equals(player)) {
             return true;
         }
-        if (t[3].equals(player) && t[5].equals(player) && t[7].equals(player)) {
-            return true;
-        }
-        return false;
+        return t[3].equals(player) && t[5].equals(player) && t[7].equals(player);
     }
 
 
