@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
+public class PlayScreen extends AppCompatActivity implements View.OnClickListener
+{
 
     String turn = "X";
     //Start off with X outside onCreate because I *THINK* it will mess something up
