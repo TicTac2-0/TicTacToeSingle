@@ -1,5 +1,6 @@
 package com.example.tictactoesingle;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -10,190 +11,156 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PlayScreen extends AppCompatActivity implements View.OnClickListener
-{
+
+public class PlayScreen extends AppCompatActivity implements View.OnClickListener {
+
 
     String turn = "X";
-    //Start off with X outside onCreate because I *THINK* it will mess something up
+    int moves = 0; // To track the number of moves
+    Button[] tiles = new Button[9]; // Array to hold the buttons representing the tiles
+    TextView winnerTV, turnTV;
 
-    Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
-    TextView winnerTV, turnTV, tieText;
-    String[] t = new String[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_screen);
 
-        //9 tiles in total
-        //tiles are counted left to right, top to bottom
-        /*
-          e.g   1   2   3
-                4   5   6
-                7   8   9
-         */
-        tile1 = findViewById(R.id.tile1);
-        tile2 = findViewById(R.id.tile2);
-        tile3 = findViewById(R.id.tile3);
-        tile4 = findViewById(R.id.tile4);
-        tile5 = findViewById(R.id.tile5);
-        tile6 = findViewById(R.id.tile6);
-        tile7 = findViewById(R.id.tile7);
-        tile8 = findViewById(R.id.tile8);
-        tile9 = findViewById(R.id.tile9);
 
-
-        tile1.setOnClickListener(this);
-        tile2.setOnClickListener(this);
-        tile3.setOnClickListener(this);
-        tile4.setOnClickListener(this);
-        tile5.setOnClickListener(this);
-        tile6.setOnClickListener(this);
-        tile7.setOnClickListener(this);
-        tile8.setOnClickListener(this);
-        tile9.setOnClickListener(this);
-
-        winnerTV = findViewById(R.id.winnerTV);
-        turnTV = findViewById(R.id.turnTV);
-        tieText = findViewById(R.id.tieText);
-
+        // Initialize tiles array with button references
+        for (int i = 0; i < tiles.length; i++) {
+            int resID = getResources().getIdentifier("tile" + (i + 1), "id", getPackageName());
+            tiles[i] = findViewById(resID);
+            tiles[i].setOnClickListener(this);
         }
 
 
-    //what happens when you win
-    public void win()
-    {
+        winnerTV = findViewById(R.id.winnerTV);
+        turnTV = findViewById(R.id.turnTV);
+        updateTurnText();
+    }
+
+
+    // Method to update the text indicating whose turn it is
+    private void updateTurnText() {
+        turnTV.setText("It is " + turn + "'s Turn");
+    }
+
+
+    // Method to handle a win
+    private void win() {
         kaboom();
         Toast.makeText(this, turn + " won", Toast.LENGTH_LONG).show();
         winnerTV.setText(turn + " Is The Winner");
     }
 
-    public void kaboom()
-    { 
-        tile1.setText("Kaboom");
-        tile2.setText("Kaboom");
-        tile3.setText("Kaboom");
-        tile4.setText("Kaboom");
-        tile5.setText("Kaboom");
-        tile6.setText("Kaboom");
-        tile7.setText("Kaboom");
-        tile8.setText("Kaboom");
-        tile9.setText("Kaboom");
+
+    // Method to check for a tie
+    private boolean checkTie() {
+        return moves == 9; // If all tiles are filled, it's a tie
     }
 
-    //start winning logic
 
-    public void checkHoriz()
-    {
-        for(int i = 1; i<8; i+= 3)
-        {
-            //checks if the row is full of empty text or not
-            if (!t[i].equals("Empty") && !t[i + 1].equals("Empty") && !t[i + 2].equals("Empty") && !t[1].equals("Kaboom"))
-            {
-                if (t[i].equals(t[i + 1]) && t[i + 1].equals(t[i + 2]) )
-                {
-                    System.out.println(turn + " won horizontally");
-                    win();
-                }
-            }
-        }
-
-    }//end checkHoriz
-
-    public void checkVert()
-    {
-        for(int i = 1; i < 3; i++)
-        {
-            if(!t[i].equals("Empty") && !t[i + 3].equals("Empty") && !t[i + 6].equals("Empty") && !t[1].equals("Kaboom"))
-            {
-                if (t[i].equals(t[i + 3]) && t[i + 3].equals(t[i + 6]))
-                {
-                    System.out.println(turn + " won vertically");
-                    win();
-                }
-            }
-        }
-    }//end checkVert
-
-    //diagonal from top left to bottom right
-    public void diag1()
-    {
-        if(!t[1].equals("Empty") && !t[5].equals("Empty") && !t[9].equals("Empty") && !t[1].equals("Kaboom"))
-        {
-            if(t[1].equals(t[5]) && t[5].equals(t[9]))
-            {
-                System.out.println(turn + " won diagonally");
-                win();
-            }
-        }
-    }//end diag1
-
-    //diagonal from bottom left to top right
-    public void diag2()
-    {
-        if(!t[7].equals("Empty") && !t[5].equals("Empty") && !t[3].equals("Empty") && !t[1].equals("Kaboom"))
-        {
-            if(t[7].equals(t[5]) && t[5].equals(t[3]))
-            {
-                System.out.println(turn + " won diagonally");
-                win();
-            }
-        }
-    }//end diag2
-
-
-    //end logic
-
-    public void fillArray()
-    {
-        t[0] = null;
-        t[1] = (String)tile1.getText();
-        t[2] = (String)tile2.getText();
-        t[3] = (String)tile3.getText();
-        t[4] = (String)tile4.getText();
-        t[5] = (String)tile5.getText();
-        t[6] = (String)tile6.getText();
-        t[7] = (String)tile7.getText();
-        t[8] = (String)tile8.getText();
-        t[9] = (String)tile9.getText();
+    // Method to handle a tie
+    private void tie() {
+        kaboom();
+        Toast.makeText(this, "It's a tie", Toast.LENGTH_LONG).show();
+        winnerTV.setText("It's a Tie");
     }
 
-    //main function of the buttons
-    public void changeSymbol(View v)
-    {
-        Button outBtn = findViewById(v.getId());
-        outBtn.setText(turn);
 
+    // Method to reset the game
+    private void resetGame() {
+        // Reset all tiles
+        for (Button tile : tiles) {
+            tile.setText("Empty");
+        }
+        // Reset winner text
+        winnerTV.setText("");
+        // Reset turn
+        turn = "X";
+        // Reset number of moves
+        moves = 0;
+        // Update turn text
+        updateTurnText();
     }
 
+
+    // Method to handle clicking on a tile
     @Override
-    //Like a toString
-    public void onClick(View v)
-    {
-        Button outBtn = findViewById(v.getId());
-        if(outBtn.getText().equals("Empty"))
-        {
-            changeSymbol(v);
-
-            fillArray();
-            diag1();
-            diag2();
-            checkVert();
-            checkHoriz();
-            if(turn.equals( "X"))
-            {
-                turn = "O";
+    public void onClick(View v) {
+        Button clickedTile = (Button) v;
+        // Check if the tile is already filled
+        if (clickedTile.getText().equals("Empty")) {
+            clickedTile.setText(turn);
+            moves++; // Increment the number of moves
+            // Check for win or tie
+            if (checkWin() || checkTie()) {
+                if (checkWin()) {
+                    win();
+                } else {
+                    tie();
+                }
+                // Reset the game after a win or tie
+                resetGame();
+            } else {
+                // Switch turns
+                turn = (turn.equals("X")) ? "O" : "X";
+                updateTurnText();
             }
-            else
-                turn = "X";
-            turnTV.setText("It is " + turn + "'s Turn");
         }
     }
-    //end main function of the buttons
 
-    public void toHomePage(View v)
-    {
+    // Method to check for a win
+    private boolean checkWin() {
+        // Check rows, columns, and diagonals for a win
+        return (checkRows() || checkColumns() || checkDiagonals());
+    }
+
+    // Method to check rows for a win
+    private boolean checkRows() {
+        for (int i = 0; i < 9; i += 3) {
+            if (!tiles[i].getText().equals("Empty") &&
+                    tiles[i].getText().equals(tiles[i + 1].getText()) && tiles[i].getText().equals(tiles[i + 2].getText()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Method to check columns for a win
+    private boolean checkColumns() {
+        for (int i = 0; i < 3; i++) {
+            if (!tiles[i].getText().equals("Empty") &&
+                    tiles[i].getText().equals(tiles[i + 3].getText()) && tiles[i].getText().equals(tiles[i + 6].getText()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Method to check diagonals for a win
+    private boolean checkDiagonals() {
+        return (!tiles[0].getText().equals("Empty") &&
+                tiles[0].getText().equals(tiles[4].getText()) &&
+                tiles[0].getText().equals(tiles[8].getText())) ||
+                (!tiles[2].getText().equals("Empty") && tiles[2].getText().equals(tiles[4].getText()) && tiles[2].getText().equals(tiles[6].getText()));
+    }
+
+
+    // Method to change text of all tiles to "Kaboom"
+    private void kaboom() {
+        for (Button tile : tiles) {
+            tile.setText("Kaboom");
+        }
+    }
+
+    // Method to return to the home page
+    public void toHomePage(View v) {
         startActivity(new Intent(PlayScreen.this, MainActivity.class));
     }
-
-}//end playScreen class
+}
