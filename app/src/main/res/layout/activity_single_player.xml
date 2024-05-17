@@ -29,6 +29,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="1"
                 android:text="Empty"/>
 
             <Button
@@ -37,6 +38,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="2"
                 android:text="Empty"/>
 
 
@@ -46,6 +48,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="3"
                 android:text="Empty"/>
 
 
@@ -62,6 +65,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="4"
                 android:text="Empty" />
 
             <Button
@@ -71,6 +75,7 @@
                 android:onClick="changeSymbol"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="5"
                 android:text="Empty" />
 
             <Button
@@ -79,6 +84,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="6"
                 android:text="Empty"/>
         </TableRow>
 
@@ -93,6 +99,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="7"
                 android:text="Empty" />
             <Button
                 android:id="@+id/tile82"
@@ -100,6 +107,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="8"
                 android:text="Empty" />
             <Button
                 android:id="@+id/tile92"
@@ -107,6 +115,7 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="9"
                 android:text="Empty" />
         </TableRow>
 
