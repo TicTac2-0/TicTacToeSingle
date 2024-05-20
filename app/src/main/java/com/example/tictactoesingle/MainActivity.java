@@ -1,7 +1,6 @@
 package com.example.tictactoesingle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,19 +18,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        instructionsButton = (Button) findViewById(R.id.InstructionsButton);
-        playButton = (Button) findViewById(R.id.SinglePlayerButton);
-        titleText = (TextView) findViewById(R.id.title_text);
+        instructionsButton = findViewById(R.id.InstructionsButton);
+        playButton = findViewById(R.id.SinglePlayerButton);
+        titleText = findViewById(R.id.title_text);
     }
 
-    public void toInstructions(View v)
-    {
+    public void toInstructions(View v) {
         startActivity(new Intent(MainActivity.this, Instructions.class));
     }
 
-    public void toPlay(View v)
-    {
-        startActivity(new Intent(MainActivity.this, PlayScreen.class));
+    public void toSinglePlay(View v) {
+        startActivity(new Intent(MainActivity.this, SinglePlayer.class));
     }
 
+    public void toPlay(View v) {
+        startActivity(new Intent(MainActivity.this, PlayScreen.class));
+    }
 }
