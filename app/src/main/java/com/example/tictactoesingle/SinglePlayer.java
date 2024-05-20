@@ -10,19 +10,14 @@ import java.util.Random;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SinglePlayer extends AppCompatActivity implements View.OnClickListener {
-
-
     String[] t = new String[10];
     Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
     TextView winnerTV, turnTV;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player);
-
 
         tile1 = findViewById(R.id.tile12);
         tile2 = findViewById(R.id.tile22);
@@ -34,7 +29,6 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         tile8 = findViewById(R.id.tile82);
         tile9 = findViewById(R.id.tile92);
 
-
         tile1.setOnClickListener(this);
         tile2.setOnClickListener(this);
         tile3.setOnClickListener(this);
@@ -45,15 +39,12 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         tile8.setOnClickListener(this);
         tile9.setOnClickListener(this);
 
-
         winnerTV = findViewById(R.id.winnerTV2);
         turnTV = findViewById(R.id.turnTV2);
-
 
         initializeGameState();
         turnTV.setText("Your Turn");
     }
-
 
     private void initializeGameState() {
         for (int i = 1; i <= 9; i++) {
@@ -61,14 +52,19 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     @Override
     public void onClick(View v) {
-        Button clickedButton = findViewById(v.getId());
-        if (clickedButton.getText().equals("Empty")) {
+        brainMethod(v);
+    }
+
+    public void brainMethod(View v) {
+        Button clickedButton = (Button) v;
+        int tileIndex = Integer.parseInt(clickedButton.getTag().toString());
+
+        if (t[tileIndex].equals("Empty")) {
             // Player's move
             clickedButton.setText("X");
-            t[Integer.parseInt(v.getTag().toString())] = "X";
+            t[tileIndex] = "X";
 
             if (checkWin("X")) {
                 displayResult("You win!");
@@ -91,10 +87,8 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-    
+
     private void makeComputerMove() {
-        // Implement logic for the computer's move
-        // For simplicity, let's make the computer choose a random empty tile
         ArrayList<Integer> emptyTiles = new ArrayList<>();
         for (int i = 1; i <= 9; i++) {
             if (t[i].equals("Empty")) {
@@ -137,9 +131,8 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-    private boolean checkWin(String player)
-    {
+    private boolean checkWin(String player) {
+        // Horizontal check
         for (int i = 1; i <= 7; i += 3) {
             if (t[i].equals(player) && t[i + 1].equals(player) && t[i + 2].equals(player)) {
                 return true;
@@ -158,16 +151,13 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         return t[3].equals(player) && t[5].equals(player) && t[7].equals(player);
     }
 
-
-    private boolean checkTie()
-    {
-        // Implement tie condition check
+    private boolean checkTie() {
         for (int i = 1; i <= 9; i++) {
             if (t[i].equals("Empty")) {
-                return false; // If any empty tile found, game is not a tie
+                return false;
             }
         }
-        return true; // If no empty tile found, game is a tie
+        return true;
     }
 
     private void displayResult(String result) {
@@ -181,5 +171,10 @@ public class SinglePlayer extends AppCompatActivity implements View.OnClickListe
         tile7.setEnabled(false);
         tile8.setEnabled(false);
         tile9.setEnabled(false);
+    }
+
+    public void goHome(View v)
+    {
+        finish();
     }
 }
