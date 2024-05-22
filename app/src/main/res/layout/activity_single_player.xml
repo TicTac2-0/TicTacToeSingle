@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ACC7FD"
-    tools:context=".PlayScreen">
+    tools:context=".SinglePlayer">
 
 
     <TableLayout
-        android:id="@+id/playBoard"
+        android:id="@+id/playBoard2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#555F82"
@@ -19,101 +19,110 @@
 
 
         <TableRow
-            android:id="@+id/row0"
+            android:id="@+id/row02"
             android:layout_width="match_parent">
 
 
             <Button
-                android:id="@+id/tile1"
+                android:id="@+id/tile12"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="1"
                 android:text="Empty"/>
 
             <Button
-                android:id="@+id/tile2"
+                android:id="@+id/tile22"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="2"
                 android:text="Empty"/>
 
 
             <Button
-                android:id="@+id/tile3"
+                android:id="@+id/tile32"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="3"
                 android:text="Empty"/>
 
 
         </TableRow>
 
         <TableRow
-            android:id="@+id/row1"
+            android:id="@+id/row12"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/tile4"
+                android:id="@+id/tile42"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="4"
                 android:text="Empty" />
 
             <Button
-                android:id="@+id/tile5"
+                android:id="@+id/tile52"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:onClick="changeSymbol"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="5"
                 android:text="Empty" />
 
             <Button
-                android:id="@+id/tile6"
+                android:id="@+id/tile62"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="6"
                 android:text="Empty"/>
         </TableRow>
 
         <TableRow
-            android:id="@+id/row2"
+            android:id="@+id/row22"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/tile7"
+                android:id="@+id/tile72"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="7"
                 android:text="Empty" />
             <Button
-                android:id="@+id/tile8"
+                android:id="@+id/tile82"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="8"
                 android:text="Empty" />
             <Button
-                android:id="@+id/tile9"
+                android:id="@+id/tile92"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
                 android:backgroundTint="#555F82"
+                android:tag="9"
                 android:text="Empty" />
         </TableRow>
 
     </TableLayout>
 
     <TextView
-        android:id="@+id/winnerTV"
+        android:id="@+id/winnerTV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
@@ -122,16 +131,16 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/turnTV"
+        android:id="@+id/turnTV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:text="It is X's Turn"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/tieText"
+        android:id="@+id/tieText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="It's a tie!"
@@ -141,7 +150,7 @@
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/playHomeBtn"
+        android:id="@+id/playHomeBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -150,7 +159,5 @@
         android:text="Main Screen"
         android:textSize="30dp"
         android:layout_marginTop="20dp"/>
-
-
 
 </LinearLayout>

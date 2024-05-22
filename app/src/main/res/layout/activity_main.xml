@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_vertical"
     android:background="#ACC7FD"
     tools:context=".MainActivity">
 
@@ -12,33 +13,42 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60px"
-        android:layout_marginTop="150px"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
         android:text="Rico - Tac - Dale!"
         android:textColor="#6D67BD"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:textStyle="italic" />
 
     <Button
-        android:id="@+id/PlayButton"
+        android:id="@+id/SinglePlayerButton"
         android:layout_width="370dp"
         android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="-20dp"
         android:backgroundTint="#555F82"
-        android:onClick="toPlay"
-        android:text="Play"
-        android:textSize="30dp" />
+        android:text="Single Player"
+        android:textSize="30sp"
+        android:onClick="toSinglePlay" />
+
+    <Button
+        android:id="@+id/MultiplayerButton"
+        android:layout_width="370dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#555F82"
+        android:text="Multiplayer"
+        android:textSize="30sp"
+        android:onClick="toPlay" />
 
     <Button
         android:id="@+id/InstructionsButton"
         android:layout_width="370dp"
         android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#555F82"
-        android:onClick="toInstructions"
         android:text="Instructions"
-        android:textSize="30dp" />
+        android:textSize="30sp"
+        android:onClick="toInstructions" />
 
 </LinearLayout>
